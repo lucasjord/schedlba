@@ -1,4 +1,4 @@
-# Temporary makefile for SCHED made by configurelinux64gfortran
+# Temporary makefile for SCHED made by configureMacOSX
 #
 # Makefile.master is the template makefile.  It is not viable as it stands
 # but can be made viable by uncommenting various lines as described in
@@ -46,11 +46,11 @@
 #    With gfortran you will get lots of warnings.  Most are about string
 #    truncation and unused call arguments.  They should be benign.
 
- FC = gfortran -Wall -fimplicit-none -fno-backslash
+# FC = gfortran -Wall -fimplicit-none -fno-backslash
 #FC = g77 -Wall -Wimplicit -fno-backslash # g77 (Linux, OS X, and others)
 #FC = f77 -C -u                       # SUN  IBM/AIX
 #FC = ifort -u -c -warn unused -warn declarations # Linux with Intel compiler.
-#FC = gfortran -Wall -fimplicit-none -fno-backslash  # gfortran 
+FC = gfortran -Wall -fimplicit-none -fno-backslash  # gfortran 
 #       (OS X with gfortran.  Other gfortran?  
 #       Might need -m64 for 64 bit in some cases)
 
@@ -67,13 +67,14 @@
 #  are being used to make portable binaries.  With modern systems, they
 #  seem to cause problems.
 
- XLD = -L/usr/lib64 -lX11
+# XLD = -L/usr/lib -lgcc -L/usr/X11R6/lib -lX11
 #XLD =                                         # Should work on many systems.
                                                #  Use for pgplot stub.
 #XLD = -lX11		                       # X11 libraries, if needed
 #XLD = -L/usr/X11R6/lib -lX11                  # If not in path.  32 bit
 #XLD = -L/usr/lib64 -lX11     # Linux, non-static (AOC 64 bit RHEL 5.2 machines)
 #XLD = -L/usr/lib -lgcc -L/usr/X11R6/lib -lX11 # Mac OS X
+XLD = -L/usr/lib -lgcc -L/opt/homebrew/lib -lX11 # Mac OS X
 #   Chris Phillips Sep 18, 2007, reports needing -O2 in some cases.
 
 
@@ -126,7 +127,7 @@ LPGPLOT = $(PGPLOT_DIR)
 # For linker:  (LPGPLOT not needed for all).
 #   If there are missing items, consider adding -lz
 
- LDPGPLOT = -L$(LPGPLOT) -lpgplot
+ LDPGPLOT = -L$(LPGPLOT) -lpgplot -lz -framework Foundation -framework AppKit
 
 #  Some options - will be set in the configure scripts, but you can change:
 #LDPGPLOT = -lpgplot -lpng       # pgplot, png, z in the standard load path.
@@ -245,8 +246,7 @@ IBMAIX_OBJS = $(IBMAIX_FSRCS:.f=.o) $(IBMAIX_CSRCS:.c=.o) $(UNIX_OBJS)
 
 ARCH_OBJS = $($(ARCH)_OBJS)
 
-#BINDIR = ../bin/linux64gf
-BINDIR = ../bin/
+BINDIR = ../bin
 CP = /bin/cp
 RM = /bin/rm
 
