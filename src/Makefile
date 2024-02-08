@@ -116,11 +116,11 @@ PLOT_SRCS = $(wildcard Plot/*.f) $(wildcard PlotNRAO/*.f) # With PGPLOT
 #    For the stub, set LPGPLOT and LDPGPLOT to blank.
 
 # Location:
-LPGPLOT = $(PGPLOT_DIR)
+#LPGPLOT = $(PGPLOT_DIR)
 
 #  These should not be needed with use of PGPLOT_DIR above.
 #LPGPLOT = /usr/local/lib           # Typical location
-#LPGPLOT = /usr/local/pgplot        # Alternate location.
+LPGPLOT = /usr/local/pgplot        # Alternate location.
 #LPGPLOT = /sw/lib/pgplot           # PGPLOT from the fink - MacOSX
 #LPGPLOT =                          # For use with the stub.
 
